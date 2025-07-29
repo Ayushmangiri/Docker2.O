@@ -1,7 +1,7 @@
 package com.DockerLearning.DockerLearning.controller;
 
 import com.DockerLearning.DockerLearning.model.Students;
-import com.DockerLearning.DockerLearning.service.StudentsService;
+import com.DockerLearning.DockerLearning.service.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,14 +12,11 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentsService repo;
+    private StudentsRepository repo;
 
 
     @RequestMapping("/getStudents")
     public List<Students> getStudents() {
-        return List.of(
-                new Students("Chandra", 26, 22),
-                new Students("Akshay", 23, 23)
-        );
+        return repo.findAll();
     }
 }
